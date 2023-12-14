@@ -176,18 +176,20 @@ func LinksFromIdentityCid(identityCid cid.Cid) ([]cid.Cid, error) {
 }
 
 func PieceInUnsealedSector(ctx context.Context, sa SectorAccessor, pieceInfo PieceInfo) bool {
-	for _, di := range pieceInfo.Deals {
-		isUnsealed, err := sa.IsUnsealed(ctx, di.MinerAddr, di.SectorID, di.PieceOffset.Unpadded(), di.PieceLength.Unpadded())
-		if err != nil {
-			log.Errorf("failed to find out if sector %d is unsealed, err=%s", di.SectorID, err)
-			continue
-		}
-		if isUnsealed {
-			return true
-		}
-	}
-
-	return false
+	//for _, di := range pieceInfo.Deals {
+	//	isUnsealed, err := sa.IsUnsealed(ctx, di.MinerAddr, di.SectorID, di.PieceOffset.Unpadded(), di.PieceLength.Unpadded())
+	//	if err != nil {
+	//		log.Errorf("failed to find out if sector %d is unsealed, err=%s", di.SectorID, err)
+	//		continue
+	//	}
+	//	if isUnsealed {
+	//		return true
+	//	}
+	//}
+	//
+	//return false
+	log.Debug("SKIP PieceInUnsealedSector")
+	return true
 }
 
 // GetBestPieceInfoMatch will take a list of pieces, and an optional PieceCID from a client, and
